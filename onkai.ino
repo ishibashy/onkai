@@ -1,7 +1,7 @@
 #define PINNO 11 //圧電ブザー
 
 int zennon[15] = {262, 294, 330, 349, 392, 440, 494, 523, 587, 659, 698, 784, 880, 988, 1047}; //全音2オクターブ分
-int hannon[10] = {277, 311, 370, 415, 466, 554, 622, 740, 831, 932}; //半音2オクターブ分
+int hannon[11] = {277, 311, 370, 415, 466, 554, 622, 740, 831, 932, 1109}; //半音2オクターブ分
 int countZEN = 0;
 int countHAN = 0;
 int toneDelay = 100;
@@ -9,6 +9,12 @@ int toneDelay = 100;
 //-----初期化-----
 void setup() {
   Serial.begin(9600);
+  Serial.println(F("Hello!"));
+  for(int i = 0;i < 5;i++){
+    tone(PINNO, zennon[countZEN + 6]) ;
+    delay(toneDelay + 10);
+    noTone(PINNO);
+  }
 }
 //-----メイン-----
 
@@ -111,4 +117,5 @@ void loop() {
     }
     delay(500);
   }
+  
 }
