@@ -10,7 +10,7 @@ int toneDelay = 100;
 void setup() {
   Serial.begin(9600);
   Serial.println(F("Hello!"));
-  for(int i = 0;i < 5;i++){
+  for (int i = 0; i < 5; i++) {
     tone(PINNO, zennon[countZEN + 6]) ;
     delay(toneDelay + 10);
     noTone(PINNO);
@@ -21,72 +21,58 @@ void setup() {
 void loop() {
   delay(10);
   if (digitalRead(9) == HIGH) {//ド(↑)
-    Serial.println(F("9pin"));
     tone(PINNO, zennon[countZEN + 7]) ;
     delay(toneDelay);
     noTone(PINNO);
   } else if (digitalRead(8) == HIGH) {//シ
-    Serial.println(F("8pin"));
     tone(PINNO, zennon[countZEN + 6]) ;
     delay(toneDelay);
     noTone(PINNO);
   } else if (digitalRead(7) == HIGH) {//ラ
-    Serial.println(F("7pin"));
     tone(PINNO, zennon[countZEN + 5]) ;
     delay(toneDelay);
     noTone(PINNO);
   } else if (digitalRead(6) == HIGH) {//ソ
-    Serial.println(F("6pin"));
     tone(PINNO, zennon[countZEN + 4]) ;
     delay(toneDelay);
     noTone(PINNO);
   } else if (digitalRead(5) == HIGH) {//ファ
-    Serial.println(F("5pin"));
     tone(PINNO, zennon[countZEN + 3]) ;
     delay(toneDelay);
     noTone(PINNO);
   } else if (digitalRead(4) == HIGH) {//ミ
-    Serial.println(F("4pin"));
     tone(PINNO, zennon[countZEN + 2]) ;
     delay(toneDelay);
     noTone(PINNO);
   } else if (digitalRead(3) == HIGH) {//レ
-    Serial.println(F("3pin"));
     tone(PINNO, zennon[countZEN + 1]) ;
     delay(toneDelay);
     noTone(PINNO);
   } else if (digitalRead(2) == HIGH) {//ド
-    Serial.println(F("2pin"));
     tone(PINNO, zennon[countZEN]) ;
     delay(toneDelay);
     noTone(PINNO);
   } else if (analogRead(A0) >= 500) {//ド#(↑)
-    Serial.println(F("A0pin"));
     tone(PINNO, hannon[countHAN + 5]) ;
     delay(toneDelay);
     noTone(PINNO);
   } else if (analogRead(A1) >= 500) {//ラ#
-    Serial.println(F("A1pin"));
     tone(PINNO, hannon[countHAN + 4]) ;
     delay(toneDelay);
     noTone(PINNO);
   } else if (analogRead(A2) >= 500) {//ソ#
-    Serial.println(F("A2pin"));
     tone(PINNO, hannon[countHAN + 3]) ;
     delay(toneDelay);
     noTone(PINNO);
   } else if (analogRead(A3) >= 500) {//ファ#
-    Serial.println(F("A3pin"));
     tone(PINNO, hannon[countHAN + 2]) ;
     delay(toneDelay);
     noTone(PINNO);
   } else if (analogRead(A4) >= 500) {//レ#
-    Serial.println(F("A4pin"));
     tone(PINNO, hannon[countHAN + 1]) ;
     delay(toneDelay);
     noTone(PINNO);
   } else if (analogRead(A5) >= 500) {//ド#
-    Serial.println(F("A5pin"));
     tone(PINNO, hannon[countHAN]) ;
     delay(toneDelay);
     noTone(PINNO);
@@ -108,13 +94,41 @@ void loop() {
     delay(500);
   } else if (digitalRead(13) == HIGH) {//音階1オクターブ切り替え
     Serial.println(F("13pin"));
-    if(countZEN < 7 ){
+    if (countZEN < 7 ) {
       countZEN = 7;
       countHAN = 5;
-    }else if(countZEN > 6){
+    } else if (countZEN > 6) {
       countZEN = 0;
       countHAN = 0;
     }
     delay(500);
   }
+  digitalRead(2) == HIGH ? Serial.print(F("D2")) : Serial.print(F("- "));
+  digitalRead(3) == HIGH ? Serial.print(F("D3")) : Serial.print(F("- "));
+  digitalRead(4) == HIGH ? Serial.print(F("D4")) : Serial.print(F("- "));
+  digitalRead(5) == HIGH ? Serial.print(F("D5")) : Serial.print(F("- "));
+  digitalRead(6) == HIGH ? Serial.print(F("D6")) : Serial.print(F("- "));
+  digitalRead(7) == HIGH ? Serial.print(F("D7")) : Serial.print(F("- "));
+  digitalRead(8) == HIGH ? Serial.print(F("D8")) : Serial.print(F("- "));
+  digitalRead(9) == HIGH ? Serial.print(F("D9")) : Serial.print(F("- "));
+  Serial.print(F("\t"));
+  Serial.print(F("A5:"));
+  Serial.print(analogRead(A5));
+  Serial.print(F("\t"));
+  Serial.print(F("A4:"));
+  Serial.print(analogRead(A4));
+  Serial.print(F("\t"));
+  Serial.print(F("A3:"));
+  Serial.print(analogRead(A3));
+  Serial.print(F("\t"));
+  Serial.print(F("A2:"));
+  Serial.print(analogRead(A2));
+  Serial.print(F("\t"));
+  Serial.print(F("A1:"));
+  Serial.print(analogRead(A1));
+  Serial.print(F("\t"));
+  Serial.print(F("A0:"));
+  Serial.println(analogRead(A0));
+
+
 }
